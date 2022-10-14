@@ -16,6 +16,7 @@ def registrar_produtos(produtos): # função de registrar o produto, na linha ba
     with open('produtos.json', 'w') as pj:
         json.dump(produtos, pj)
 
+app = Flask(__name__) # criar o programa]
 
 @app.route('/')
 def index():
