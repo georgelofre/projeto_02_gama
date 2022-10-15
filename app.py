@@ -1,53 +1,32 @@
-from flask import Flask, render_template, request, redirect
-from flask import url_for
-import pandas as pd
-import numpy as np
+
+from flask import Flask, request, render_template
+import json
+import os
 
 
-app = Flask(__name__)
+app = Flask (__name__)
 
 produtos = []
-carrinho = []
 
+if os.path.exists('produtos.json'): # usa um metodo os, para verificar se o caminho desse arquivo existe
+    with open('produtos.json', 'r') as pj: # abre o arquivo em json, cria uma var com os dados do arquivo, e na linha de baixo faz o carregamento dos arquivos.
+        produtos = json.load(pj)
+
+def registrar_produtos(produtos): # função de registrar o produto, na linha baixo - utiliza-se a função write para apagar toda a lista e registrar as mudanças.
+    with open('produtos.json', 'w') as pj:
+        json.dump(produtos, pj)
+
+app = Flask(__name__) # criar o programa]
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/cadastro')
-def cadastro():
-    return render_template('cadastro.html')
+@app.route('/cadastro', methods=["POST", "GET"])
+def addProduto():
+    if request.form.get("nomeProduto") and request.form.get("valorProduto"):
+        produtos.append({"nomeProduto": request.form.get("nomeProduto"), 'valorProduto': request.form.get('valorProduto')})
+        registrar_produtos(produtos)
+    return render_template('cadastro.html', produtos = produtos)
 
-@app.route('/produto_cadastrado')
-def cadastrado_ok():
-    argumentos = request.args.to_dict()
-    produtos.append(argumentos)
-    return render_template('produto_cadastrado.html', lista=produtos)
-
-
-@app.route('/listar_cadastrados')
-def listagen():
-    #return produtos
-    return render_template('listar.html', lista=produtos)
-
-
-
-@app.route('/vendas')
-def vendas():
-    return render_template('adc_carrinho.html', lista=produtos)
-
-@app.route('/carrinho_cad')
-def cadastrado_carrinho():
-    prod_vendido = request.args.to_dict()
-    carrinho.append(prod_vendido)
-    return render_template('carrinho_cad.html', carrinho=carrinho)
-
-@app.route('/carrinho')
-def adc_carrinho():
-    return render_template('listar_carrinho.html', carrinho=carrinho)
-
-
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+app.run(debug=True)
