@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block basehtml %}
+<body>
+    <div>
+        <fieldset>
+            <legend>Cadastro de produtos</legend>
+            <form action="{{url_for('addProduto')}}" method="POST">
+                <label for="">Produto:</label>
+                <br>
+                <input type="text" name="nomeProduto" placeholder="Digite o nome do produto" required>
+                <p>
+                <label for="">Preço:</label>
+                <br>
+                <input type="number" name="valorProduto" placeholder="Digite o valor do produto" required>
+                <button>Cadastrar</button>
+            </form>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset>
+            <legend>Produtos cadastrados</legend>
+                    <ul>
+                        {% for item in produtos %}                
+                            <li>{{item.nomeProduto}}</li>
+                            <li>{{item.valorProduto}}</li>
+                        {% endfor %}
+                    </ul>
+
+            </fieldset>  
+        mostra produtos listados
+    </div>
+</body>
+{% endblock basehtml %}
