@@ -29,4 +29,17 @@ def addProduto():
         registrar_produtos(produtos)
     return render_template('cadastro.html', produtos = produtos)
 
+@app.route('/<nomeProduto>', methods=["POST", "GET"])
+def removeProduto(nomeProduto):
+    print(nomeProduto)
+    c=0
+    while c in (0,len(produtos)):
+        if produtos[c]['nomeProduto'] in nomeProduto:
+            del produtos[c]
+            break
+        c+=1        
+    
+    registrar_produtos(produtos)      
+    return render_template('cadastro.html', produtos = produtos)
+
 app.run(debug=True)

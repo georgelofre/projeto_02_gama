@@ -19,15 +19,25 @@
     <div>
         <fieldset>
             <legend>Produtos cadastrados</legend>
-                    <ul>
-                        {% for item in produtos %}                
-                            <li>{{item.nomeProduto}}</li>
-                            <li>{{item.valorProduto}}</li>
-                        {% endfor %}
-                    </ul>
-
+            <table>
+                <tr>
+                  <th>Nome</th>
+                  <th>Preço</th>
+                  <th>Ação</th>
+                </tr>
+                    {% for item in produtos %}
+                        <tr>
+                            <td>{{item.nomeProduto}}</td>
+                            <td>{{item.valorProduto}}</td>
+                            <td>
+                                <a href="{{item.nomeProduto}}" class="botao aqui">Excluir</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+              </table>
             </fieldset>  
         mostra produtos listados
     </div>
 </body>
+
 {% endblock basehtml %}
