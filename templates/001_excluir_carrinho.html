@@ -15,25 +15,30 @@
         </div>
     </header>
     <nav>   
-       <a href="">Portal do fornecedor</a>
+       <a href="">Portal do Consumidor</a>
        <a href="001_index.html">Voltar ao início</a>
     </nav>
     <section class="section_title">
-        <div>Fornecedor, cadastre o produto para venda!</div>
+        <div>Consumidor, veja o conteúdo do carrinho e exclua o produto ou quantidade desejada!</div>
     </section>
     <section id="section_data">
         <div>
-            <form action="001_produto_cadastrado.html" method="get">
+            <ul>
+                <li>Lista de produtos do CARRINHO</li>
+            </ul>
+        </div>
+        <div>
+            <form action="001_prod_excluido_carrinho.html" method="get">
                 <label for="nome_produto">Nome do produto:</label>
                 <p><input type="text" name="produto" id="nome_produto"></p>
-                <label for="preco_produto">Preço: </label>
+                <label for="preco_produto">Quantidade: </label>
                 <p><input type="number" name="preco" id="preco_produto"></p>
-                <p><input type="submit" value="Cadastrar" id="button_sub"></p>
+                <p><input type="submit" value="Excluir" id="button_sub"></p>
             </form>
         </div>
     </section>
     <nav>
-        <a href="001_portal_fornecedor.html">Voltar ao menu cadastro</a>
+        <a href="001_portal_consumidor.html">Voltar ao menu de compras</a>
     </nav>
     <footer>
         <div>
