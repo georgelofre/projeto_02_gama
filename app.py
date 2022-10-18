@@ -1,5 +1,5 @@
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template,redirect
 import json
 import os
 
@@ -29,17 +29,16 @@ def addProduto():
         registrar_produtos(produtos)
     return render_template('cadastro.html', produtos = produtos)
 
-@app.route('/<nomeProduto>', methods=["POST", "GET"])
-def removeProduto(nomeProduto):
-    print(nomeProduto)
-    c=0
-    while c in (0,len(produtos)):
-        if produtos[c]['nomeProduto'] in nomeProduto:
+@app.route('/<excluirproduto>/removerProduto')
+def removerProduto(excluirproduto):
+    print(excluirproduto)
+    c = 0
+    while c in range (0, len(produtos)):
+        if produtos[c]['nomeProduto'] in excluirproduto:
             del produtos[c]
+            registrar_produtos(produtos)
             break
-        c+=1        
-    
-    registrar_produtos(produtos)      
-    return render_template('cadastro.html', produtos = produtos)
+        c+=1
+    return redirect('/cadastro')
 
 app.run(debug=True)
