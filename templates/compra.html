@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block basehtml %}
+<body>
+    <div>
+        <fieldset>
+            <legend>Produtos cadastrados</legend>
+            <table>
+                <tr>
+                  <th>Nome</th>
+                  <th>Preço</th>
+                  <th>Ação</th>
+                </tr>
+                    {% for item in produtos %}
+                        <tr>
+                            <td>{{item.nomeProduto}}</td>
+                            <td>{{item.valorProduto}}</td>
+                            <td>
+                                <a href="{{item.nomeProduto}},{{item.valorProduto}}/addCompra" class="botao aqui">Adicionar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+              </table>
+            </fieldset>  
+        mostra produtos listados
+    </div>
+    <div>
+        <fieldset>
+            <legend>Carrinho</legend>
+            <table>
+                <tr>
+                  <th>Nome</th>
+                  <th>Preço</th>
+                  <th>Ação</th>
+                </tr>
+                    {% for item in carrinho %}
+                        <tr>
+                            <td>{{item.nomeProduto}}</td>
+                            <td>{{item.valorProduto}}</td>
+                            <td>
+                                <a href="{{item.nomeProduto}}/rmvCompra" class="botao aqui">Excluir</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                <tfoot>
+                    <td>Quantidade de itens: {{qtdCompra}}</td>
+                    <td>Total R$:{{soma}}</td>
+                </tfoot>
+            </table>
+        </fieldset>
+    </div>
+</body>
+{% endblock basehtml %}
