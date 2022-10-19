@@ -121,7 +121,9 @@ def rmvRelatorio():
 
 @app.route('/relatorio')
 def mostrarRelatorio():
-    return render_template('/mostrarrealatorio.html')
+    base = relatorio
+ 
+    return render_template('/mostrarrealatorio.html', base = base)
 
 
 app.run(debug=True)
