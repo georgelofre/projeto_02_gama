@@ -1,36 +1,68 @@
-{% extends 'base.html' %}
-{% block basehtml %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/style_portal_cadastro.css">
+</head>
 <body>
-    <div>
-        <fieldset>
-          <legend>Relatório de compras</legend>
-            <table>
-              <tr>
-                <th>Data:</th>
-                <th>Valor:</th>
-                <th>Nome Cliente:</th>
-                <th>Tipo de Pagamento:</th>
-                <th>Produtos:</th>
-                {% for c in base %}
-              <tr>
-                  <td>{{c.Data}}</td>
-                  <td>{{c.Valor}}</td>
-                  <td>{{c.NomeCliente}}</td>
-                  <td>{{c.TipoPagamento}}</td>
-                  <td>
-                    <details>
-                      <summary>Produtos</summary>
-                        <p>
-                          <table>
-                            {{c.Produtos}}</td>
-                          </table>
-                        </p>
-                    </details>
-                  </td>
-              </tr>
-                {% endfor %}
-            </table>
-        </fieldset>  
-    </div>
+    <header>
+        <div id="text_header">
+            <h1>Orgânicos</h1>
+            <h2>Alcance uma vida saudável!</h2>
+        </div>
+    </header>
+    <nav>   
+       <a href="">Portal de relatório</a>
+    </nav>
+    <section class="section_title">
+        <div>Aqui encontra-se uma consolidação dos dados obtidos com as vendas.</div>
+    </section>
+    <section id="section_data">
+      <fieldset>
+        <legend>Relatório de compras</legend>
+          <table>
+            <tr>
+              <th>Data:</th>
+              <th>Valor:</th>
+              <th>Nome Cliente:</th>
+              <th>Tipo de Pagamento:</th>
+              <th>Produtos:</th>
+              {% for c in base %}
+            <tr>
+                <td>{{c.Data}}</td>
+                <td>{{c.Valor}}</td>
+                <td>{{c.NomeCliente}}</td>
+                <td>{{c.TipoPagamento}}</td>
+                <td>
+                  <details>
+                    <summary>Produtos</summary>
+                      <p>
+                        <table>
+                          {{c.Produtos}}</td>
+                        </table>
+                      </p>
+                  </details>
+                </td>
+            </tr>
+              {% endfor %}
+          </table>
+      </fieldset>
+    </section>
+    <nav>
+        <a href="/">Voltar ao início</a>
+    </nav>
+    <footer>
+        <div>
+            &reg;Empresa Orgânicos
+        </div>
+        <div>
+            Contato: organicos@empresa.com
+        </div>
+
+    </footer>
+
 </body>
-{% endblock basehtml %}
+</html>
