@@ -3,22 +3,34 @@
 <body>
     <div>
         <fieldset>
-          <legend>Produtos cadastrados</legend>
+          <legend>Relatório de compras</legend>
             <table>
               <tr>
                 <th>Data:</th>
-                <th>Valor</th>
-                <th>Nome Cliente</th>
+                <th>Valor:</th>
+                <th>Nome Cliente:</th>
+                <th>Tipo de Pagamento:</th>
+                <th>Produtos:</th>
                 {% for c in base %}
               <tr>
                   <td>{{c.Data}}</td>
-                  <td>{{c.Data}}</td>
-teste
+                  <td>{{c.Valor}}</td>
+                  <td>{{c.NomeCliente}}</td>
+                  <td>{{c.TipoPagamento}}</td>
+                  <td>
+                    <details>
+                      <summary>Produtos</summary>
+                        <p>
+                          <table>
+                            {{c.Produtos}}</td>
+                          </table>
+                        </p>
+                    </details>
+                  </td>
               </tr>
-          {% endfor %}
+                {% endfor %}
             </table>
         </fieldset>  
-        mostra produtos listados
     </div>
 </body>
 {% endblock basehtml %}

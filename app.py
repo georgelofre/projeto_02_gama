@@ -3,6 +3,7 @@ import json
 import os
 from datetime import date, datetime
 
+
 app = Flask (__name__)
 
 produtos = []
@@ -41,9 +42,11 @@ def index():
 
 @app.route('/cadastro', methods=["POST", "GET"])
 def addProduto():
+    
     if request.form.get("nomeProduto") and request.form.get("valorProduto"):
         produtos.append({"nomeProduto": request.form.get("nomeProduto"), 'valorProduto': request.form.get('valorProduto')})
         registrar_produtos(produtos)
+
     return render_template('cadastro.html', produtos = produtos)
 
 @app.route('/<excluirproduto>/removerProduto')
@@ -88,6 +91,7 @@ def rmvCompra(nomeProduto):
             registrar_compras(carrinho)
             break
         c+=1
+    registrar_compras(carrinho)
     return redirect('/compra')
 
 @app.route('/finalizar_compra')
@@ -110,20 +114,18 @@ def addRelatorio():
                         "TipoPagamento": request.form.get("tipopag"),
                         "Produtos": carrinho })
         registrar_relatorio(relatorio)        
-        carrinho.clear()
-    return redirect('/compra')
+    
+    carrinho.clear()
+    return redirect('/')
 
 @app.route('/compracancelada')
 def rmvRelatorio():
-    print('cancel')
     carrinho.clear()
-    return redirect('/compra')
+    return redirect('/relatorio')
 
 @app.route('/relatorio')
 def mostrarRelatorio():
     base = relatorio
- 
     return render_template('/mostrarrealatorio.html', base = base)
-
 
 app.run(debug=True)

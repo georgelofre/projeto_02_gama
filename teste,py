@@ -1,12 +1,10 @@
-from datetime import date
+produtos = [{"Data": "2022-10-19", "Valor": 1.0, "NomeCliente": "erick", "TipoPagamento": "boleto", "Produtos": [{"nomeProduto": "teste", "valorProduto": "3"}, {"nomeProduto": "chocolate", "valorProduto": "2"}]}, {"Data": "2022-10-19", "Valor": 2.0, "NomeCliente": "creitron", "TipoPagamento": "boleto", "Produtos": [{"nomeProduto": "macarrao", "valorProduto": "3"}, {"nomeProduto": "chocolate", "valorProduto": "2"}]}]
 
+listaport = list
+listappend = list
 
-def dia():
-    data = date.today()
-    return data
-    
+for c in produtos:
+    listaport = c['Produtos']
+    listappend.append(listaport)
 
-
-data = dia()
-
-print(data)
+print(listaport)

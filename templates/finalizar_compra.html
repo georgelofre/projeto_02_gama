@@ -3,14 +3,14 @@
 <body>
     <fieldset>
         <legend>Dados</legend>
-            <form action="{{url_for('addRelatorio')}}" method="POST"">
+            <form action="{{url_for('addRelatorio')}}" method="GET"">
                 <div>
                     <label>Nome completo:</label><br>
-                    <input name="nomeCliente"><br><br>
+                    <input name="nomeCliente" required><br><br>
                     <label for="">Escolha a forma de pagamento:</label><br>
-                    <input type="radio" name="tipopag" value="boleto">
+                    <input type="radio" name="tipopag" value="Boleto bancário">
                     <label>Boleto bancário</label><br>
-                    <input type="radio"  name="tipopag" value="cartao">
+                    <input type="radio"  name="tipopag" value="Cartão de crédito">
                     <label>Cartão de crédito</label>
                 </div>
                 <br>
