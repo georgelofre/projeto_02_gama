@@ -1,14 +1,13 @@
-
-from math import prod
 from flask import Flask, request, render_template,redirect
 import json
 import os
-
+from datetime import date, datetime
 
 app = Flask (__name__)
 
 produtos = []
 carrinho = []
+relatorio = []
 
 if os.path.exists('produtos.json'): # usa um metodo os, para verificar se o caminho desse arquivo existe
     with open('produtos.json', 'r') as pj: # abre o arquivo em json, cria uma var com os dados do arquivo, e na linha de baixo faz o carregamento dos arquivos.
@@ -19,14 +18,22 @@ def registrar_produtos(produtos): # função de registrar o produto, na linha ba
         json.dump(produtos, pj)
 
 if os.path.exists('compras.json'): # usa um metodo os, para verificar se o caminho desse arquivo existe
-    with open('compras.json', 'r') as cj: # abre o arquivo em json, cria uma var com os dados do arquivo, e na linha de baixo faz o carregamento dos arquivos.
+    with open('compras.json', 'r') as cj: # abre o arquivo em json , cria uma var com os dados do arquivo, e na linha de baixo faz o carregamento dos arquivos.
         carrinho = json.load(cj)
 
 def registrar_compras(carrinho): # função de registrar o produto, na linha baixo - utiliza-se a função write para apagar toda a lista e registrar as mudanças.
     with open('compras.json', 'w') as cj:
-        json.dump(carrinho, cj)        
+        json.dump(carrinho, cj)
 
-app = Flask(__name__) # criar o programa]
+if os.path.exists('relatorio.json'): # usa um metodo os, para verificar se o caminho desse arquivo existe
+    with open('relatorio.json', 'r') as rj: # abre o arquivo em json , cria uma var com os dados do arquivo, e na linha de baixo faz o carregamento dos arquivos.
+        relatorio = json.load(rj)
+
+def registrar_relatorio(relatorio): # função de registrar o produto, na linha baixo - utiliza-se a função write para apagar toda a lista e registrar as mudanças.
+    with open('relatorio.json', 'w') as rj:
+        json.dump(relatorio, rj)
+
+app = Flask(__name__) # criar o programa
 
 @app.route('/')
 def index():
@@ -55,11 +62,16 @@ def compra():
     qtdCompra = len(carrinho)
     c=0
     soma = 0
+    
     for c in range (0, len(carrinho)):
         valor = float(carrinho[c]['valorProduto'])
         soma = valor + soma
-        print(soma)
-    return render_template('compra.html', produtos = produtos, carrinho = carrinho, qtdCompra = qtdCompra, soma = soma)
+    
+
+    return render_template('compra.html', produtos = produtos, 
+                            carrinho = carrinho, 
+                            qtdCompra = qtdCompra,
+                            soma = soma)
 
 @app.route('/<nomeProduto>,<valorProduto>/addCompra')
 def addCompra(nomeProduto,valorProduto):
@@ -77,5 +89,39 @@ def rmvCompra(nomeProduto):
             break
         c+=1
     return redirect('/compra')
+
+@app.route('/finalizar_compra')
+def finalizar_compra():
+    return render_template('/finalizar_compra.html')
+
+@app.route('/comprafinalizada', methods=["POST", "GET"])
+def addRelatorio():
+
+    data = str(date.today())
+    soma = 0
+
+    for c in range (0, len(carrinho)):
+        valor = float(carrinho[c]['valorProduto'])
+        soma = valor + soma
+        
+    if request.form.get("nomeCliente") and request.form.get("tipopag"):
+        relatorio.append({"Data": data, "Valor": valor, 
+                        "NomeCliente": request.form.get("nomeCliente"),
+                        "TipoPagamento": request.form.get("tipopag"),
+                        "Produtos": carrinho })
+        registrar_relatorio(relatorio)        
+        carrinho.clear()
+    return redirect('/compra')
+
+@app.route('/compracancelada')
+def rmvRelatorio():
+    print('cancel')
+    carrinho.clear()
+    return redirect('/compra')
+
+@app.route('/relatorio')
+def mostrarRelatorio():
+    return render_template('/mostrarrealatorio.html')
+
 
 app.run(debug=True)

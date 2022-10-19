@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block basehtml %}
+<body>
+    <div>
+        <fieldset>
+            <legend>Produtos cadastrados</legend>
+            <table>
+                <tr>
+                  <th>Nome</th>
+                  <th>Preço</th>
+                  <th>Ação</th>
+                </tr>
+                {{relatorio}}
+              </table>
+            </fieldset>  
+        mostra produtos listados
+    </div>
+</body>
+{% endblock basehtml %}
