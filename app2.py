@@ -1,6 +1,6 @@
-from crypt import methods
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template,redirect
 
+products = []
 app = Flask (__name__)
 @app.route('/')
 def index():
@@ -25,7 +25,8 @@ def cadastrar():
     elif request.method == 'POST':
         nome = request.form['nome']
         preco = request.form['preco']
-        return jsonify({"nome":nome, "preco":preco})
+        products.append({"nome":nome, "preco":preco})
+        return redirect ('/fornecedor/cadastrar')
 
 @app.route('/fornecedor/listarcad')
 def listarcad():
