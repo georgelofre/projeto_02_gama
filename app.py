@@ -112,7 +112,8 @@ def addRelatorio():
                         "NomeCliente": request.form.get("nomeCliente"),
                         "TipoPagamento": request.form.get("tipopag"),
                         "Produtos": carrinho })
-        registrar_relatorio(relatorio)        
+    
+    registrar_relatorio(relatorio)        
     
     carrinho.clear()
     return redirect('/')
