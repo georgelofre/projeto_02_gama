@@ -102,31 +102,59 @@ nav > a:hover{
     font-size: 25px;
 }
 
-#section_data > div > form > p >input{
-    width: 80%;
+#section_data > div > fieldset{
+    padding: 15px;
+}
+
+#section_data > div > fieldset > form > p > input{
+    width: 70%;
     height: 25px;
     border-radius: 10px;
     margin-bottom: 5px;
+    padding: 2px 8px;
 }
 
-#button_sub{
-    background-color: rgb(36, 102, 80);
+.button_sub{
+    background-color: rgb(18, 117, 84);
     color: white;
     font-size: 20px;
+    border-radius: 5px;
+    padding: 2px 5px;
 }
 
-#button_sub:hover{
-    background-color: rgb(97, 211, 97);
-    color: rgb(5, 54, 24);
+.button_sub > a{
+    color: white;
+    text-decoration: none;
+}
+
+.button_sub:hover{
+    background-color: rgb(21, 92, 21);
+    color: rgb(160, 161, 126);
     transition: 1000ms;
 }
 
-table, tr, th, td{
-    border: 1px solid black;
+.button_sub:hover{
+    background-color: rgb(21, 92, 21);
+    color: rgb(251, 255, 122);
+    transition: 1000ms;
+}
+
+table{
     margin: auto;
 }
 
+tr, th, td{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
 
+}
+
+#th_relatorio > th{
+    text-align: center;
+    padding-left: 40px;
+}
 
 footer{
     background-color: rgb(36, 102, 80);

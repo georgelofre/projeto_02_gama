@@ -22,19 +22,16 @@
         <div>Bem-vindo ao Portal do fornecedor!</div>
         <div>Escolha uma das opções:</div>
     </section>
-    <nav class="nav_portal">
+    <section id="section_data">        
         <div>
             <fieldset>
                 <legend>Cadastro de produtos</legend>
                 <form action="{{url_for('addProduto')}}" method="POST">
                     <label for="">Produto:</label>
-                    <br>
-                    <input type="text" name="nomeProduto" placeholder="Digite o nome do produto" required>
-                    <p>
+                    <p><input type="text" name="nomeProduto" placeholder="Digite o nome do produto" required></p>
                     <label for="">Preço:</label>
-                    <br>
-                    <input type="number" min="0.0" max="999" name="valorProduto" placeholder="Digite o valor do produto" required>
-                    <button>Cadastrar</button>
+                    <p><input type="number" min="0" max="999" step="0.01" name="valorProduto" placeholder="Digite o valor do produto" required></p>
+                    <button class="button_sub">Cadastrar</button>
                 </form>
             </fieldset>
         </div>
@@ -43,23 +40,24 @@
                 <legend>Produtos cadastrados</legend>
                 <table>
                     <tr>
-                      <th>Nome</th>
-                      <th>Preço</th>
-                      <th>Ação</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Ação</th>
                     </tr>
                         {% for item in produtos %}
                             <tr>
                                 <td>{{item.nomeProduto}}</td>
                                 <td>{{item.valorProduto}}</td>
                                 <td>
-                                    <a href="{{item.nomeProduto}}/removerProduto" class="botao aqui">Excluir</a>
+                                    <button class="button_sub"><a href="{{item.nomeProduto}}/removerProduto" class="botao aqui">Excluir</a></button>
                                 </td>
                             </tr>
                         {% endfor %}
-                  </table>
-                </fieldset>  
+                    </table>
+            </fieldset>
         </div>
-    </nav>
+    </section>
+
     <footer>
         <br>
         <div>

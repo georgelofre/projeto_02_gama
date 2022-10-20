@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../static/style_portal_cadastro.css">
     <script>
         function alerta() {
-            alert("Obrigada, sua compra foi gerada com sucesso! Até a próxima!")
+            alert("Sua compra foi gerada com sucesso! A empresa agradece a preferência! Até a próxima!")
         }
     </script>
 </head>
@@ -27,37 +27,36 @@
         <div>Bem-vindo ao Portal de finalização de compras!</div>
         <div>Preencha os dados abaixo:</div>
     </section>
-    <nav class="nav_portal">
+    <section id="section_data">
         <div>
             <fieldset>
                 <legend>Dados</legend>
-                    <form action="{{url_for('addRelatorio')}}" method="GET"">
-                        <div>
-                            <label>Nome completo:</label><br>
-                            <input name="nomeCliente" required><br><br>
-                            <label for="">Escolha a forma de pagamento:</label><br>
+                    <form action="{{url_for('addRelatorio')}}" method="GET">
+                        <label>Nome completo:</label><br>
+                        <p><input type="text" name="nomeCliente" required></p>
+                        <br>
+                        <label for="">Escolha a forma de pagamento:</label><br>
+                        <div id="forma_pagamento">
                             <input type="radio" name="tipopag" value="PIX">
                             <label>PIX</label><br>
                             <input type="radio"  name="tipopag" value="Cartão">
                             <label>Cartão</label>
                         </div>
                         <br>
-                        <button onclick="alerta()">Comprar</button>
-                        <button><a href="/compracancelada">Cancelar</a></button>
+                        <button onclick="alerta()" class="button_sub">Comprar</button>
+                        <button class="button_sub"><a href="/compracancelada">Cancelar</a></button>
                     </form>
-            </fieldset> 
+            </fieldset>
         </div>
+    </section>
     </nav>
     <footer>
-        <br>
         <div>
             &reg;Empresa Orgânicos
         </div>
         <div>
             Contato: organicos@empresa.com
         </div>
-
     </footer>
-
 </body>
 </html>
