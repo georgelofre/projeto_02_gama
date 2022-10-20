@@ -16,17 +16,17 @@
     </header>
     <nav>   
        <a href="">Portal do consumidor</a>
-       <a href="001_index.html">Voltar ao início</a>
+       <a href="{{url_for('index')}}">Voltar ao início</a>
     </nav>
     <section class="section_title">
         <div>Bem-vindo ao Portal do consumidor!</div>
         <div>Escolha uma das opções:</div>
     </section>
     <nav class="nav_portal">
-        <a href="001_adicionar_no_carrinho.html">Adicionar produto ao carrinho</a>
-        <a href="001_listar_produtos_carrinho.html">Visualizar conteúdo do carrinho</a>
-        <a href="001_excluir_carrinho.html">Excluir produto do carrinho</a>
-        <a href="001_finalizar_compra.html">Ir para finalizar compra</a>
+        <a href="{{url_for('adicionar')}}">Adicionar produto ao carrinho</a>
+        <a href="{{url_for('visualizar')}}">Visualizar conteúdo do carrinho</a>
+        <a href="{{url_for('excluir')}}">Excluir produto do carrinho</a>
+        <a href="{{url_for('finalizar')}}">Ir para finalizar compra</a>
     </nav>
     <footer>
         <div>
