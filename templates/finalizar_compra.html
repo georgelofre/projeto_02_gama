@@ -1,19 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/style_portal_cadastro.css">
+</head>
 <body>
-    <fieldset>
-        <legend>Dados</legend>
-            <form action="{{url_for('addRelatorio')}}" method="GET"">
-                <div>
-                    <label>Nome completo:</label><br>
-                    <input name="nomeCliente" required><br><br>
-                    <label for="">Escolha a forma de pagamento:</label><br>
-                    <input type="radio" name="tipopag" value="Boleto bancário">
-                    <label>Boleto bancário</label><br>
-                    <input type="radio"  name="tipopag" value="Cartão de crédito">
-                    <label>Cartão de crédito</label>
-                </div>
-                <br>
-                <button>Comprar</button>
-                <button><a href="/compracancelada">Cancelar</a></button>
-            </form>
-    </fieldset>
+    <header>
+        <div id="text_header">
+            <h1>Orgânicos</h1>
+            <h2>Alcance uma vida saudável!</h2>
+        </div>
+    </header>
+    <nav>   
+       <a href="">Portal do fornecedor</a>
+       <a href="/">Voltar ao início</a>
+    </nav>
+    <section class="section_title">
+        <div>Bem-vindo ao Portal de finalização de compras!</div>
+        <div>Preencha os dados abaixo:</div>
+    </section>
+    <nav class="nav_portal">
+        <div>
+            <fieldset>
+                <legend>Dados</legend>
+                    <form action="{{url_for('addRelatorio')}}" method="GET"">
+                        <div>
+                            <label>Nome completo:</label><br>
+                            <input name="nomeCliente" required><br><br>
+                            <label for="">Escolha a forma de pagamento:</label><br>
+                            <input type="radio" name="tipopag" value="Boleto bancário">
+                            <label>Boleto bancário</label><br>
+                            <input type="radio"  name="tipopag" value="Cartão de crédito">
+                            <label>Cartão de crédito</label>
+                        </div>
+                        <br>
+                        <button>Comprar</button>
+                        <button><a href="/compracancelada">Cancelar</a></button>
+                    </form>
+            </fieldset> 
+        </div>
+    </nav>
+    <footer>
+        <br>
+        <div>
+            &reg;Empresa Orgânicos
+        </div>
+        <div>
+            Contato: organicos@empresa.com
+        </div>
+
+    </footer>
+
 </body>
+</html>
