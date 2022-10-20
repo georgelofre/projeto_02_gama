@@ -1,34 +1,75 @@
-{% extends 'base.html' %}
-{% block basehtml %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/style_portal_cadastro.css">
+</head>
 <body>
-    <div>
-        <fieldset>
-            <legend>Cadastro de produtos</legend>
-            <form action="{{url_for('addProduto')}}" method="POST">
-                <label for="">Produto:</label>
-                <br>
-                <input type="text" name="nomeProduto" placeholder="Digite o nome do produto" required>
-                <p>
-                <label for="">Preço:</label>
-                <br>
-                <input type="number" name="valorProduto" placeholder="Digite o valor do produto" required>
-                <button>Cadastrar</button>
-            </form>
-        </fieldset>
-    </div>
-    <div>
-        <fieldset>
-            <legend>Produtos cadastrados</legend>
-                    <ul>
-                        {% for item in produtos %}                
-                            <li>{{item.nomeProduto}}</li>
-                            <li>{{item.valorProduto}}</li>
+    <header>
+        <div id="text_header">
+            <h1>Orgânicos</h1>
+            <h2>Alcance uma vida saudável!</h2>
+        </div>
+    </header>
+    <nav>   
+       <a href="">Portal do fornecedor</a>
+       <a href="/">Voltar ao início</a>
+    </nav>
+    <section class="section_title">
+        <div>Bem-vindo ao Portal do fornecedor!</div>
+        <div>Escolha uma das opções:</div>
+    </section>
+    <nav class="nav_portal">
+        <div>
+            <fieldset>
+                <legend>Cadastro de produtos</legend>
+                <form action="{{url_for('addProduto')}}" method="POST">
+                    <label for="">Produto:</label>
+                    <br>
+                    <input type="text" name="nomeProduto" placeholder="Digite o nome do produto" required>
+                    <p>
+                    <label for="">Preço:</label>
+                    <br>
+                    <input type="number" min="0.0" max="999" name="valorProduto" placeholder="Digite o valor do produto" required>
+                    <button>Cadastrar</button>
+                </form>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend>Produtos cadastrados</legend>
+                <table>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Preço</th>
+                      <th>Ação</th>
+                    </tr>
+                        {% for item in produtos %}
+                            <tr>
+                                <td>{{item.nomeProduto}}</td>
+                                <td>{{item.valorProduto}}</td>
+                                <td>
+                                    <a href="{{item.nomeProduto}}/removerProduto" class="botao aqui">Excluir</a>
+                                </td>
+                            </tr>
                         {% endfor %}
-                    </ul>
+                  </table>
+                </fieldset>  
+        </div>
+    </nav>
+    <footer>
+        <br>
+        <div>
+            &reg;Empresa Orgânicos
+        </div>
+        <div>
+            Contato: organicos@empresa.com
+        </div>
 
-            </fieldset>  
-        mostra produtos listados
-    </div>
+    </footer>
+
 </body>
-{% endblock basehtml %}
-
+</html>
