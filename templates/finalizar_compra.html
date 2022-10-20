@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../static/style_portal_cadastro.css">
+    <script>
+        function alerta() {
+            alert("Obrigada, sua compra foi gerada com sucesso! Até a próxima!")
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -23,26 +28,26 @@
         <div>Preencha os dados abaixo:</div>
     </section>
     <nav class="nav_portal">
-        <fieldset>
-            <legend>Dados</legend>
-                <form action="{{url_for('addRelatorio')}}" method="POST"">
-                    <div>
-                        <label>Nome completo:</label><br>
-                        <input name="nomeCliente"><br><br>
-                        <label for="">Escolha a forma de pagamento:</label><br>
-                        <input type="radio" name="tipopag" value="boleto">
-                        <label>Boleto bancário</label><br>
-                        <input type="radio"  name="tipopag" value="cartao">
-                        <label>Cartão de crédito</label>
-                    </div>
-                    <br>
-                    <button>Comprar</button>
-                    <button><a href="/compracancelada">Cancelar</a></button>
-                </form>
-        </fieldset>
-    </body>
-    </fieldset>
-</body>
+        <div>
+            <fieldset>
+                <legend>Dados</legend>
+                    <form action="{{url_for('addRelatorio')}}" method="GET"">
+                        <div>
+                            <label>Nome completo:</label><br>
+                            <input name="nomeCliente" required><br><br>
+                            <label for="">Escolha a forma de pagamento:</label><br>
+                            <input type="radio" name="tipopag" value="PIX">
+                            <label>PIX</label><br>
+                            <input type="radio"  name="tipopag" value="Cartão">
+                            <label>Cartão</label>
+                        </div>
+                        <br>
+                        <button onclick="alerta()">Comprar</button>
+                        <button><a href="/compracancelada">Cancelar</a></button>
+                    </form>
+            </fieldset> 
+        </div>
+    </nav>
     <footer>
         <br>
         <div>
