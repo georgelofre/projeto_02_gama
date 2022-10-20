@@ -97,6 +97,26 @@ def rmvCompra(nomeProduto):
 def finalizar_compra():
     return render_template('/finalizar_compra.html')
 
+# @app.route('/comprafinalizada', methods=["POST", "GET"])
+# def addRelatorio():
+
+#     data = str(date.today())
+#     soma = 0
+
+#     for c in range (0, len(carrinho)):
+#         valor = float(carrinho[c]['valorProduto'])
+#         soma = valor + soma
+        
+#     if request.form.get("nomeCliente") and request.form.get("tipopag"):
+#         relatorio.append({"Data": data, "Valor": valor, 
+#                         "NomeCliente": request.form.get("nomeCliente"),
+#                         "TipoPagamento": request.form.get("tipopag"),
+#                         "Produtos": carrinho })
+#         registrar_relatorio(relatorio)
+
+#     carrinho.clear()
+#     return redirect('/')
+
 @app.route('/comprafinalizada', methods=["POST", "GET"])
 def addRelatorio():
 
@@ -112,11 +132,9 @@ def addRelatorio():
                         "NomeCliente": request.form.get("nomeCliente"),
                         "TipoPagamento": request.form.get("tipopag"),
                         "Produtos": carrinho })
-    
-    registrar_relatorio(relatorio)        
-    
-    carrinho.clear()
-    return redirect('/')
+        registrar_relatorio(relatorio)        
+        carrinho.clear()
+    return redirect('/compra')
 
 @app.route('/compracancelada')
 def rmvRelatorio():
